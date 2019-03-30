@@ -1,0 +1,15 @@
+
+##write your disk which want you check it
+mount="/mnt/disk1"
+
+if grep -qs "$mount" /proc/mounts; then
+  echo "It's mounted."
+else
+  echo "It's not mounted.Wait....Trying mount"
+  mount "$mount"
+  if [ $? -eq 0 ]; then
+   echo "Mount success!"
+  else
+   echo "Something went wrong with the mount..."
+  fi
+fi
